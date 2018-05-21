@@ -14,7 +14,7 @@ public class Queries {
 	
 	/**
 	 * App name as filter for packageSql 
-	 */
+	 */ 
 	public static String packageFilter = " AND A.PACKAGE_NAME IN ("; 
 	
 	/**

@@ -20,7 +20,7 @@ import com.surya.microservices.services.web.Account;
  * Client controller, fetches Account info from the microservice via
  * {@link WebAccountsService}.
  * 
- * @author Paul Chapman
+ * @author Surya
  */
 @Controller
 public class WebAccountsController {

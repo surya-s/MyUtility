@@ -18,6 +18,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
+import com.logger.MonitorLogger;
+
 /**
  * A simple program that writes data to an Excel file with some formats
  * for cells.
@@ -43,6 +45,8 @@ public class ExcelWriter {
 			workbook.write(outputStream);
 		}		
 	}
+	
+	
 	
 	private void createHeaderRow(Sheet sheet) {
 		CellStyle cellStyle = sheet.getWorkbook().createCellStyle();
@@ -140,5 +144,54 @@ public class ExcelWriter {
 			cellTitle.setCellStyle(cellStyle);
 			cellTitle.setCellValue(header.get(i));
 		}
+	}
+
+	private void createHeaderRow(Sheet sheet, String[] rowData) {
+		CellStyle cellStyle = sheet.getWorkbook().createCellStyle();
+		Font font = sheet.getWorkbook().createFont();
+		font.setBold(true);
+		font.setFontHeightInPoints((short) 10);
+		cellStyle.setFont(font);
+		cellStyle.setFillBackgroundColor(IndexedColors.RED.getIndex());
+		Row row = sheet.createRow(0); 
+		for (int i = 0;i<rowData.length;i++){
+			Cell cellTitle = row.createCell(i);
+			cellTitle.setCellStyle(cellStyle);
+			cellTitle.setCellValue(rowData[i]);
+		}
+	}
+	
+	public void writeToExcel(ArrayList<String[]> data) {
+		@SuppressWarnings("resource")
+		Workbook workbook = new HSSFWorkbook();
+		int i=0;
+		Sheet sheet = workbook.createSheet();
+		for (String[] rowData : data) {
+			if(i==0){
+				createHeaderRow(sheet, rowData);
+				i++;
+			}else{
+				Row row = sheet.createRow(i++);
+				writeBook(row, rowData);
+			}
+			try (FileOutputStream outputStream = new FileOutputStream("Reports/PLSQLAnalyzer.xls")) {
+				workbook.write(outputStream);
+			} catch (IOException e) {
+				MonitorLogger.error(ExcelWriter.class.getName(),"Error While Generating PLSQL analyzer excel ", e);
+			}
+		}
+	}
+
+	private void writeBook(Row row, String[] rowData) {
+		int x=0;
+		for (String value : rowData) {
+			Cell cell = row.createCell(x++);
+			cell.setCellType(CellType.NUMERIC);
+			if(StringUtils.isNumeric(value)){
+				cell.setCellValue(Long.parseLong(value));
+			}else{
+				cell.setCellValue(value);
+			}
+		}		
 	}
 }

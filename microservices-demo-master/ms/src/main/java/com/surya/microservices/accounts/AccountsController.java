@@ -13,7 +13,7 @@ import com.surya.microservices.exceptions.AccountNotFoundException;
 /**
  * A RESTFul controller for accessing account information.
  * 
- * @author Paul Chapman
+ * @author Surya
  */
 @RestController
 public class AccountsController {

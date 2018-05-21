@@ -17,7 +17,7 @@ import com.surya.microservices.accounts.AccountsConfiguration;
  * Note that the configuration for this application is imported from
  * {@link AccountsConfiguration}. This is a deliberate separation of concerns.
  * 
- * @author Paul Chapman
+ * @author Surya
  */
 @EnableAutoConfiguration
 @EnableDiscoveryClient
@@ -39,7 +39,6 @@ public class AccountsServer {
 		// Tell server to look for accounts-server.properties or
 		// accounts-server.yml
 		System.setProperty("spring.config.name", "accounts-server");
-
 		SpringApplication.run(AccountsServer.class, args);
 	}
 }

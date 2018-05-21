@@ -21,7 +21,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 /**
  * The accounts Spring configuration.
  * 
- * @author Paul Chapman
+ * @author Surya
  */
 @Configuration
 @ComponentScan

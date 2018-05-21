@@ -15,7 +15,7 @@ import com.surya.microservices.services.accounts.AccountsServer;
  * client code. Allows the test to use the same configuration as the
  * <code>AccountsServer</code> would.
  * 
- * @author Paul Chapman
+ * @author Surya
  *
  */
 @SpringBootApplication
@@ -34,7 +34,7 @@ class AccountsMain {
  * instead of @ContextConfiguration, it picks up the same configuration that
  * Spring Boot would use.
  * 
- * @author Paul Chapman
+ * @author Surya
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = AccountsMain.class)

@@ -17,7 +17,7 @@ import com.surya.microservices.exceptions.AccountNotFoundException;
 /**
  * Hide the access to the microservice inside this local service.
  * 
- * @author Paul Chapman
+ * @author Surya
  */
 @Service
 public class WebAccountsService {
